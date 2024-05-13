@@ -24,3 +24,5 @@
 # IDE files
 .idea/
 .vscode/
+
+/postgres-data/
