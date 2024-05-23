@@ -43,6 +43,11 @@ func (app *application) authenticate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// validate user against database
+	// user, err := app.DB.GetUserByEmail(requestPayload.Email)
+	// if err != nil {
+	// 	app.errorJSON(w, errors.New("invalid email or password"), http.StatusBadRequest)
+	// 	return
+	// }
 
 	// check password
 
