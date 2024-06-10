@@ -233,6 +233,8 @@ func (app *application) getPoster(movie models.Movie) models.Movie {
 	client := &http.Client{}
 	theURL := "https://api.themoviedb.org/3/search/movie?api_key=" + app.APIKey
 
+	// https://api.themoviedb.org/3/search/movie?api_key=de849523ca83fd117ee9d058528ecdbd&query=The+Matrix
+
 	req, err := http.NewRequest("GET", theURL+"&query="+url.QueryEscape(movie.Title), nil)
 	if err != nil {
 		log.Println(err)
