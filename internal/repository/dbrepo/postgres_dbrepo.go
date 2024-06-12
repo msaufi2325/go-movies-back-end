@@ -89,7 +89,7 @@ func (m *PostgresDBRepo) OneMovie(id int) (*models.Movie, error) {
 	}
 
 	// get genres, if any
-	query = `select g.id, g.genre from movies_genres mg left join genres g on (mg.genre_id=g.id) where mg.movie_id = $1 order by g.genre`
+	query = `select g.id, g.genre from movies_genres mg left join genres g on (mg.genre_id = g.id) where mg.movie_id = $1 order by g.genre`
 
 	rows, err := m.DB.QueryContext(ctx, query, id)
 	if err != nil && err != sql.ErrNoRows {
@@ -284,8 +284,8 @@ func (m *PostgresDBRepo) InsertMovie(movie models.Movie) (int, error) {
 		movie.ReleaseDate,
 		movie.Runtime,
 		movie.MPAARating,
-		time.Now(),
-		time.Now(),
+		movie.CreatedAt,
+		movie.UpdatedAt,
 		movie.Image,
 	).Scan(&newID)
 
