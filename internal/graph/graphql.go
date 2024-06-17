@@ -1,6 +1,7 @@
 package graph
 
 import (
+	"errors"
 	"strings"
 
 	"github.com/graphql-go/graphql"
@@ -116,4 +117,21 @@ func New(movies []*models.Movie) *Graph {
 		fields:    fields,
 		movieType: movieType,
 	}
+}
+
+func (g *Graph) Query() (*graphql.Result, error) {
+	rootQuery := graphql.ObjectConfig{Name: "RootQuery", Fields: g.fields}
+	schemaConfig := graphql.SchemaConfig{Query: graphql.NewObject(rootQuery)}
+	schema, err := graphql.NewSchema(schemaConfig)
+	if err != nil {
+		return nil, err
+	}
+
+	params := graphql.Params{Schema: schema, RequestString: g.QueryString}
+	resp := graphql.Do(params)
+	if len(resp.Errors) > 0 {
+		return nil, errors.New("error executing query: " + resp.Errors[0].Message)
+	}
+
+	return resp, nil
 }
