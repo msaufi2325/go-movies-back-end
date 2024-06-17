@@ -7,6 +7,7 @@ import (
 	"github.com/msaufi2325/go-movies-back-end/internal/models"
 )
 
+// Graph is the type for our graphql operations
 type Graph struct {
 	Movies      []*models.Movie
 	QueryString string
@@ -15,7 +16,10 @@ type Graph struct {
 	movieType   *graphql.Object
 }
 
+// New is the factory method to create a new instance of the Graph type.
 func New(movies []*models.Movie) *Graph {
+
+	// Define the object for our movie. The fields match database field names.
 	var movieType = graphql.NewObject(
 		graphql.ObjectConfig{
 			Name: "Movie",
@@ -51,6 +55,7 @@ func New(movies []*models.Movie) *Graph {
 		},
 	)
 
+	// Define a fields variable, which lists available actions (list, search, get)
 	var fields = graphql.Fields{
 
 		"list": &graphql.Field{
@@ -105,6 +110,7 @@ func New(movies []*models.Movie) *Graph {
 		},
 	}
 
+	// return a pointer to the Graph type, populated with the correct information
 	return &Graph{
 		Movies:    movies,
 		fields:    fields,
