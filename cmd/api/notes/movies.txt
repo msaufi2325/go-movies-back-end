@@ -44,4 +44,6 @@ var movies []models.Movie
 
 	movies = append(movies, darkKnight)
 
-  
+
+in package.json remove "proxy" for deployment
+    "proxy": "http://localhost:8080",
