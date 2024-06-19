@@ -4,7 +4,7 @@ import "net/http"
 
 func (app *application) enableCORS(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "https://learn-code.ca")
+		w.Header().Set("Access-Control-Allow-Origin", "https://main.d3umhpkiq2d2h2.amplifyapp.com/")
 		w.Header().Set("Access-Control-Allow-Credentials", "true")
 
 		if r.Method == "OPTIONS" {
