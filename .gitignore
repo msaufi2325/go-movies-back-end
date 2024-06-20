@@ -26,3 +26,5 @@
 .vscode/
 
 /postgres-data/
+
+movies.sql
