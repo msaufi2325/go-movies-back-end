@@ -30,7 +30,7 @@ func main() {
 	var app application
 
 	// read from command line
-	flag.StringVar(&app.DSN, "dsn", "host=localhost port=5433 user=postgres password=password dbname=movies sslmode=disable timezone=Asia/Tokyo connect_timeout=5", "Postgres connection string")
+	flag.StringVar(&app.DSN, "dsn", "host=localhost port=5432 user=postgres password=password dbname=movies sslmode=disable timezone=Asia/Tokyo connect_timeout=5", "Postgres connection string")
 	flag.StringVar(&app.JWTSecret, "jwt-secret", "verysecret", "signing secret")
 	flag.StringVar(&app.JWTIssuer, "jwt-issuer", "example.com", " signing issuer")
 	flag.StringVar(&app.JWTAudience, "jwt-audience", "example.com", "signing audience")
