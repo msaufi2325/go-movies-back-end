@@ -37,7 +37,7 @@ type Claims struct {
 }
 
 func (j *Auth) GenerateTokenPair(user *jwtUser) (TokenPairs, error) {
-	// Creata a token
+	// Create a token
 	token := jwt.New(jwt.SigningMethodHS256)
 
 	// Set the claims
@@ -58,7 +58,7 @@ func (j *Auth) GenerateTokenPair(user *jwtUser) (TokenPairs, error) {
 		return TokenPairs{}, err
 	}
 
-	// Creata a refresh token and set claims
+	// Create a refresh token and set claims
 	refreshToken := jwt.New(jwt.SigningMethodHS256)
 	refreshTokenClaims := refreshToken.Claims.(jwt.MapClaims)
 	refreshTokenClaims["sub"] = fmt.Sprint(user.ID)
@@ -74,7 +74,7 @@ func (j *Auth) GenerateTokenPair(user *jwtUser) (TokenPairs, error) {
 	}
 
 	// Create TokenPairs and populate with signed tokens
-	var tokenPairs = TokenPairs{
+	var tokenPairs = TokenPairs {
 		Token:        signedAccessToken,
 		RefreshToken: signedRefreshToken,
 	}
@@ -101,6 +101,7 @@ func (j *Auth) GetExpiredRefreshCookie() *http.Cookie {
 	return &http.Cookie{
 		Name:     j.CookieName,
 		Path:     j.CookiePath,
+		Value:    "",
 		Expires:  time.Unix(0, 0),
 		MaxAge:   -1,
 		SameSite: http.SameSiteStrictMode,
