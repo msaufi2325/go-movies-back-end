@@ -51,10 +51,10 @@ func main() {
 		Issuer:        app.JWTIssuer,
 		Audience:      app.JWTAudience,
 		Secret:        app.JWTSecret,
-		TokenExpiry:   15 * time.Minute,
-		RefreshExpiry: 72 * time.Hour,
+		TokenExpiry:   time.Minute * 15,
+		RefreshExpiry: time.Hour * 24,
 		CookiePath:    "/",
-		CookieName:    "_Host-refresh_token",
+		CookieName:    "__Host-refresh_token",
 		CookieDomain:  app.CookieDomain,
 	}
 
