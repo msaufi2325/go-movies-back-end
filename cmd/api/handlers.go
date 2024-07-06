@@ -95,7 +95,7 @@ func (app *application) refreshToken(w http.ResponseWriter, r *http.Request) {
 
 			// parse the token to get the claims
 			_, err := jwt.ParseWithClaims(refreshToken, claims, func(token *jwt.Token) (interface{}, error) {
-				return []byte(app.auth.Secret), nil
+				return []byte(app.JWTSecret), nil
 			})
 			if err != nil {
 				app.errorJSON(w, errors.New("unauthorized"), http.StatusUnauthorized)
